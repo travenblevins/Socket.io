@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Chat</title>
+</head>
+<body>
+    <h1>Socket.io Chat</h1>
+    <div id="newClient">
+        <input type="text" id="username" placeholder="Enter your username">
+        <button id="join">Join</button>
+    </div>
+    <div id="chatMessage">
+        <input type="text" id="message" placeholder="Enter your message">
+        <button id="send">Send</button>
+    </div>
+    <div id="chat">
+        <ul id="chatList"></ul>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const newClient = document.getElementById('newClient');
+        const join = document.getElementById('join');
+        const username = document.getElementById('username');
+        const chatMessage = document.getElementById('chatMessage');
+        const message = document.getElementById('message');
+        const send = document.getElementById('send');
+        send.addEventListener('click', () => {
+            socket.emit('chat message', message.value);
+            message.value = '';
+        });
+        join.addEventListener('click', () => {
+            socket.emit('newClient', username.value);
+            newClient.style.display = 'none';
+        });
+        socket.on('chat message', (msg) => {
+            console.log(msg);
+            const chatList = document.getElementById('chatList');
+            const item = document.createElement('li');
+            item.innerHTML = msg;
+            chatList.appendChild(item);
+        });
+        socket.on('newClient', (username) => {
+            const chatList = document.getElementById('chatList');
+            const item = document.createElement('li');
+            item.innerHTML = username;
+            chatList.appendChild(item);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "socket.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "node app.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travenblevins/Socket.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/travenblevins/Socket.io/issues"
+  },
+  "homepage": "https://github.com/travenblevins/Socket.io#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
